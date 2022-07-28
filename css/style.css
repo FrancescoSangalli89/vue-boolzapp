@@ -255,11 +255,12 @@ header {
     color: var(--gray-color);
 }
 
-.site-footer input {
+.message-field {
     width: 90%;
     height: 80%;
     border-radius: 5px;
     border: none;
+    padding: 0 10px;
 }
 
 /* media query */

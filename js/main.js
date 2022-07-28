@@ -1,9 +1,16 @@
-
+// Aggiunta di un messaggio: l’utente scrive un testo 
+// nella parte bassa e digitando
+// “enter” il testo viene aggiunto al thread sopra, 
+// come messaggio verde
+// Risposta dall’interlocutore: ad ogni inserimento di un messaggio, 
+// l’utente riceverà
+// un “ok” come risposta, che apparirà dopo 1 secondo.
 
 const app = new Vue({
     el: '#app',
     data: {
         activeContact: 0,
+        newMessage: '',
         contacts: [
             {
                 'name': 'Michele',
@@ -187,6 +194,28 @@ const app = new Vue({
         selectContact(position) {
             this.activeContact = position;
             console.log(position);
+        },
+        addMessage() {
+            
+            this.contacts[this.activeContact].messages.push(
+                {
+                    date: '10/01/2020 15:30:55',
+                    message: this.newMessage,
+                    status: 'sent'
+                }
+            );
+
+            this.newMessage = '';
+
+            setTimeout(function () {
+                this.contacts[this.activeContact].messages.push(
+                    {
+                        date: '10/01/2020 15:30:55',
+                        message: 'ok!',
+                        status: 'received'
+                    }
+                );
+            } , 1000);
         },
     }
 })

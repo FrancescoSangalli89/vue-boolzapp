@@ -202,20 +202,20 @@ const app = new Vue({
                     date: '10/01/2020 15:30:55',
                     message: this.newMessage,
                     status: 'sent'
-                }
+                },
+                setTimeout(function () {
+                    this.contacts[this.activeContact].messages.push(
+                        {
+                            date: '10/01/2020 15:30:55',
+                            message: 'ok!',
+                            status: 'received'
+                        }
+                    );
+                } , 1000)
             );
 
             this.newMessage = '';
 
-            setTimeout(function () {
-                this.contacts[this.activeContact].messages.push(
-                    {
-                        date: '10/01/2020 15:30:55',
-                        message: 'ok!',
-                        status: 'received'
-                    }
-                );
-            } , 1000);
         },
     }
 })

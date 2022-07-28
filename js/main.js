@@ -1,7 +1,4 @@
-// Visualizzazione dinamica dei messaggi: tramite la direttiva v-for, 
-// visualizzare tutti i messaggi relativi al contatto attivo 
-// all’interno del pannello della conversazione
-// Click sul contatto mostra la conversazione del contatto cliccato
+
 
 const app = new Vue({
     el: '#app',
@@ -37,12 +34,12 @@ const app = new Vue({
                 'messages': [
                     {
                         date: '10/01/2020 15:30:55',
-                        message: 'Hai portato a spasso il cane?',
+                        message: 'Hai portato il cane dal veterinario?',
                         status: 'sent'
                     }, 
                     {
                         date: '10/01/2020 15:50:00',
-                        message: 'Ricordati di stendere i panni',
+                        message: 'Ricordati di cucinare la cena',
                         status: 'sent'
                     },
                     {

@@ -96,9 +96,9 @@
     
                     </header>
     
-                    <section v-for="(message, index) in messages" id="message-area" class="margin-y2 d-flex">
-                        <span class="message-container user-message">
-                            {{messages[index].message}}
+                    <section v-for="(message, index) in contacts[activeContact].messages" id="message-area" class="margin-y2 d-flex">
+                        <span class="message-container" :class=" (contacts[activeContact].messages[index].status=='sent')?'user-message':'contact-message' ">
+                            {{contacts[activeContact].messages[index].message}}
                         </span>
 
                     </section>

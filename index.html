@@ -15,6 +15,7 @@
 <body>
 
     <div id="app">
+
         <div class="wrapper">
 
             <main class="d-flex">
@@ -57,7 +58,7 @@
                         </div>
     
                         <ul class="sidebar-contacts-list">
-                            <li v-for="(contact, index) in contacts" class="contact d-flex">
+                            <li v-for="(contact, index) in contacts" class="contact d-flex" @click="selectContact(index)">
                                     <img id="contact-image" :src="contact.image" alt="contact img">
                                     <div class="contact-data-text">
                                         <div class="contact-name">{{contact.name}}</div>
@@ -79,9 +80,9 @@
                     <header id="header-contents" class="d-flex">
     
                         <a class="contact-data d-flex" href="#">
-                            <img id="contact-image" src="img/avatar_1.jpg" alt="contact img">
+                            <img id="contact-image"  :src="contacts[activeContact].image" alt="contact img">
                             <div class="contact-data-text">
-                                <div class="contact-name">Michele</div>
+                                <div class="contact-name">{{contacts[activeContact].name}}</div>
                                 <div class="last-access">Ultimo accesso oggi alle 12.00</div>
                             </div>
                         </a>
@@ -95,14 +96,14 @@
     
                     </header>
     
-                    <section id="message-area" class="margin-y2 d-flex">
-                        <div class="message-container user-message">
-                            ciao
-                        </div>
-                        <div class="message-container contact-message">
-                            ciao
-                        </div>
+                    <section v-for="(message, index) in messages" id="message-area" class="margin-y2 d-flex">
+                        <span class="message-container user-message">
+                            {{messages[index].message}}
+                        </span>
+
                     </section>
+
+
                 </div>
             </main>
     

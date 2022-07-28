@@ -15,7 +15,9 @@ html {
 }
 
 body {
-    background-color: #969696;
+
+    background: rgb(16,129,24);
+    background: linear-gradient(180deg, rgba(16,129,24,1) 0%, rgba(16,129,24,1) 25%, rgba(147,147,147,1) 25%);
 }
 
 /* regole comuni */
@@ -36,7 +38,6 @@ ul {
 .wrapper {
     width: 90%;
     height: 100%;
-    overflow-y: scroll;
     margin: 3rem auto;
 }
 
@@ -215,13 +216,14 @@ header {
 
 #message-area {
     flex-direction: column;
+    align-items:flex-start;
+    justify-content: space-between;
 }
 
 .message-container {
     height: 2rem;
     border-radius: 10px;
     padding: 6px;
-    width: 40%;
     margin-bottom: 1rem;
 }
 

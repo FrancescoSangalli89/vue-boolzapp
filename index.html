@@ -83,11 +83,11 @@
     
                     <header id="header-contents" class="d-flex">
     
-                        <a class="contact-data d-flex" href="#">
-                            <img id="contact-image"  :src="contacts[activeContact].image" alt="contact img">
+                        <a  class="contact-data d-flex" href="#">
+                            <img v-if="filteredContacts.length>0" id="contact-image"  :src="filteredContacts[activeContact].image" alt="contact img">
                             <div class="contact-data-text">
-                                <div class="contact-name">{{contacts[activeContact].name}}</div>
-                                <div class="last-access">Ultimo accesso oggi alle 12.00</div>
+                                <div v-if="filteredContacts.length>0" class="contact-name">{{filteredContacts[activeContact].name}}</div>
+                                <div v-if="filteredContacts.length>0" class="last-access">Ultimo accesso oggi alle 12.00</div>
                             </div>
                         </a>
     
@@ -100,12 +100,19 @@
     
                     </header>
                     
-                    <section v-if="filteredContacts[activeContact]" v-for="(message, index) in filteredContacts[activeContact].messages" id="message-area" class="margin-y2 d-flex">
-                        <span class="message-container" :class=" (contacts[activeContact].messages[index].status=='sent')?'user-message':'contact-message' ">
-                            {{message.message}}
-                        </span>
-
-                    </section>
+                    <div v-if="filteredContacts.length > 0">
+                        <section  v-for="(message, index) in filteredContacts[activeContact].messages" id="message-area" class="margin-y2 d-flex">
+                            <span class="message-container d-flex" :class=" (filteredContacts[activeContact].messages[index].status=='sent')?'user-message':'contact-message' ">
+                                <span class="message-text">
+                                    {{message.message}}
+                                </span>
+                                <span class="message-date">
+                                    {{message.date}}
+                                </span>
+                            </span>
+    
+                        </section>
+                    </div>
 
 
                 </div>
@@ -124,6 +131,7 @@
         </div>
     </div>
     
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 </body>

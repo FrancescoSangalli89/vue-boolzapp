@@ -2,6 +2,7 @@
 // vengono visualizzati solo i contatti il cui nome contiene 
 // le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” 
 //     rimangono solo Marco e Martina)
+var DateTime = luxon.DateTime;
 
 const app = new Vue({
     el: '#app',
@@ -9,6 +10,7 @@ const app = new Vue({
         activeContact: 0,
         newMessage: '',
         searchValue: '',
+        now: DateTime.now().toFormat('dd/LL/y HH:mm:ss'),
         contacts: [
             {
                 'name': 'Michele',
@@ -44,12 +46,12 @@ const app = new Vue({
                     },
                     {
                         date: '10/01/2020 15:50:00',
-                        message: 'Ricordati di cucinare la cena',
+                        message: 'Ricordati di preparare la cena',
                         status: 'sent'
                     },
                     {
                         date: '10/01/2020 16:15:22',
-                        message: 'Tutto fatto!',
+                        message: "d'accordo",
                         status: 'received'
                     }
                 ],
@@ -61,18 +63,18 @@ const app = new Vue({
                 'messages': [
                     {
                         date: '10/01/2020 15:30:55',
-                        message: 'Hai portato a spasso il cane?',
+                        message: 'Ehi! come va?',
                         status: 'sent'
                     },
                     {
                         date: '10/01/2020 15:50:00',
-                        message: 'Ricordati di stendere i panni',
-                        status: 'sent'
+                        message: 'tutto bene ,grazie',
+                        status: 'received'
                     },
                     {
                         date: '10/01/2020 16:15:22',
-                        message: 'Tutto fatto!',
-                        status: 'received'
+                        message: 'Ottimo!',
+                        status: 'sent'
                     }
                 ],
             },
@@ -83,17 +85,17 @@ const app = new Vue({
                 'messages': [
                     {
                         date: '10/01/2020 15:30:55',
-                        message: 'Hai portato a spasso il cane?',
+                        message: 'Pizza stasera?',
                         status: 'sent'
                     },
                     {
                         date: '10/01/2020 15:50:00',
-                        message: 'Ricordati di stendere i panni',
+                        message: "C'è anche quella che ti piace ",
                         status: 'sent'
                     },
                     {
                         date: '10/01/2020 16:15:22',
-                        message: 'Tutto fatto!',
+                        message: 'Azz, stasera proprio non posso',
                         status: 'received'
                     }
                 ],
@@ -105,17 +107,17 @@ const app = new Vue({
                 'messages': [
                     {
                         date: '10/01/2020 15:30:55',
-                        message: 'Hai portato a spasso il cane?',
+                        message: 'Aaaaaaaaaah',
                         status: 'sent'
                     },
                     {
                         date: '10/01/2020 15:50:00',
-                        message: 'Ricordati di stendere i panni',
-                        status: 'sent'
+                        message: 'Bbbbbbbbbbbbbh',
+                        status: 'received'
                     },
                     {
                         date: '10/01/2020 16:15:22',
-                        message: 'Tutto fatto!',
+                        message: 'Che ti sei fumato?',
                         status: 'received'
                     }
                 ],
@@ -127,17 +129,17 @@ const app = new Vue({
                 'messages': [
                     {
                         date: '10/01/2020 15:30:55',
-                        message: 'Hai portato a spasso il cane?',
+                        message: 'Ciao bellezza, ti fai una birra stasera?',
                         status: 'sent'
                     },
                     {
                         date: '10/01/2020 15:50:00',
-                        message: 'Ricordati di stendere i panni',
-                        status: 'sent'
+                        message: 'Va bene, dove andiamo?',
+                        status: 'received'
                     },
                     {
                         date: '10/01/2020 16:15:22',
-                        message: 'Tutto fatto!',
+                        message: 'Non troppo lontano',
                         status: 'received'
                     }
                 ],
@@ -197,7 +199,7 @@ const app = new Vue({
 
             this.contacts[this.activeContact].messages.push(
                 {
-                    date: '10/01/2020 15:30:55',
+                    date: this.now,
                     message: this.newMessage,
                     status: 'sent'
                 }
@@ -211,7 +213,7 @@ const app = new Vue({
                 this.contacts[this.activeContact].messages.push(
 
                     {
-                        date: '10/01/2020 15:30:55',
+                        date: this.now,
                         message: 'ok!',
                         status: 'received'
                     }
@@ -222,16 +224,23 @@ const app = new Vue({
     computed: {
         filteredContacts() {
             let filtered = this.contacts
-
-            if (this.searchValue != '' && this.searchValue) {
+            console.log(filtered)
+            if (this.searchValue != '') {
                 filtered = filtered.filter((item) => {
                     return item.name.toLowerCase().includes(this.searchValue.toLowerCase())
                 })
             }
+
+            this.activeContact = 0;
+
             console.log(filtered)
             return filtered
             
         }
+    },
+    mounted: {
+        lastUserAccess() {
+            this.now;
+        }
     }
-
 })

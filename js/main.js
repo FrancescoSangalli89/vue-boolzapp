@@ -238,9 +238,4 @@ const app = new Vue({
             
         }
     },
-    mounted: {
-        lastUserAccess() {
-            this.now;
-        }
-    }
 })

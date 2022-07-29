@@ -37,6 +37,8 @@
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                     </header>
+
+                    <!-- BANNER -->
     
                     <section id="sidebar-banner" class="d-flex">
     
@@ -49,16 +51,18 @@
                         </div>
     
                     </section>
-    
+
+                    <!-- SEARCH BAR -->
+
                     <section id="sidebar-contacts">
     
                         <div class="sidebar-contacts-search d-flex">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="search" class="search-field" placeholder="Cerca o inizia una nuova chat"></input>
+                            <input type="search" v-model="searchValue" class="search-field" placeholder="Cerca o inizia una nuova chat"></input>
                         </div>
     
                         <ul class="sidebar-contacts-list">
-                            <li v-for="(contact, index) in contacts" class="contact d-flex" @click="selectContact(index)">
+                            <li v-for="(contact, index) in filteredContacts" class="contact d-flex" @click="selectContact(index)">
                                     <img id="contact-image" :src="contact.image" alt="contact img">
                                     <div class="contact-data-text">
                                         <div class="contact-name">{{contact.name}}</div>
@@ -95,10 +99,10 @@
                         </div>
     
                     </header>
-    
-                    <section v-for="(message, index) in contacts[activeContact].messages" id="message-area" class="margin-y2 d-flex">
+                    
+                    <section v-if="filteredContacts[activeContact]" v-for="(message, index) in filteredContacts[activeContact].messages" id="message-area" class="margin-y2 d-flex">
                         <span class="message-container" :class=" (contacts[activeContact].messages[index].status=='sent')?'user-message':'contact-message' ">
-                            {{contacts[activeContact].messages[index].message}}
+                            {{message.message}}
                         </span>
 
                     </section>
